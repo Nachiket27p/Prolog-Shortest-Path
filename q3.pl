@@ -15,6 +15,9 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% This lists the manufacturers
+manufacturer(apple).
+manufacturer(microsoft).
 % Contains the relation between the manufacturere and the products they make
 manufactures(microsoft, [surface, surfaceGo, surfacePro, zune]).
 manufactures(apple, [iphone, ipad, macbook, macbook13, macbook15]).

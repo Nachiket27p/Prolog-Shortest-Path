@@ -43,10 +43,15 @@ removeLast([H, H2|T], [H|T2]) :-
 % both ways are checked.
 % This allows the program to see the roads as going both ways
 % from Start --> End and End --> Start with a cose of Cost
-vertex(Start, End, Cost) :-
+edge(Start, End, Cost) :-
     (   road(Start, End, Cost)
     ;   road(End, Start, Cost)
     ).
+% This provides a wrapper around the vertex whicn in this case is
+% a city. And any database bing used must also have vertices named
+% 'city'
+vertex(X) :-
+    city(X).
 
 % The base case is where a new search for a path is started, this is used
 % to find all possible paths. Start and End are known parameters.
@@ -54,22 +59,22 @@ vertex(Start, End, Cost) :-
 pathFinder(Start, End, Path, Cost) :-
     pathFinder(Start, End, Cost, Path, []).
 
-% This case is used to check if a vertex is already in the path
+% This case is used to check if a edge is already in the path
 % then it does not get readded to the path and create loops.
 % Cut operation cannot be used for path which are adjacent because
 % there is no guarantee adjacent vertices have the lowest cost.
 pathFinder(Start, End, Cost, [Start], Discovered) :-
     \+ find(Start, Discovered),
-    vertex(Start, End, Cost).
+    edge(Start, End, Cost).
 
-% Performs the recursive search from the Start vertex to another until
+% Performs the recursive search from the Start edge to another until
 % it reaches a point where it has fond its destination. The Discovered
 % list keeps track of the vertices discovered along the current path traversal.
-% If the start vertex is not in the Discovered list then an adjacent vertex
-% is located and used to find the next vertex from it.
+% If the start edge is not in the Discovered list then an adjacent edge
+% is located and used to find the next edge from it.
 pathFinder(Start, End, Cost, [Start|T], Discovered) :-
     \+ find(Start, Discovered),
-    vertex(Start, InterMediateCity, RoadCost),
+    edge(Start, InterMediateCity, RoadCost),
     pathFinder(InterMediateCity, End, SubPathCost, T, [Start|Discovered]),
     \+ find(Start, T),
     Cost is RoadCost+SubPathCost.
@@ -91,6 +96,8 @@ isShortest(Start, End, CompletePath) :-
 % but it works for most cases but I have discovered edge cases where it does
 % work.
 isLongest(Start, End, CompletePath) :-
+    vertex(Start),
+    vertex(End),
     pathFinder(Start, End, Path, Cost),
     \+ ( pathFinder(Start, End, AltPath, AltCost),
          AltPath\=Path,
