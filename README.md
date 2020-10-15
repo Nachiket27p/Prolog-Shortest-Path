@@ -4,11 +4,10 @@ Author: Nachiker Patel
 Constain instructions on how how to query the prolog programs q3.pl and q4.pl.
 
 > ## Question 3 (q3.pl)
-The program for question 3 is the contents q3.pl. The program/database represents the following relations;
-*the relationship between *
+The program for question 3 is the contents q3.pl. The program/database
+represents the following relations;
 1. There are two OS-linked manufacturers. Apple and Microsoft.
-2. Apple makes Macbooks, iPads,
-and iPhones, the first two of which are computers.
+2. Apple makes Macbooks, iPads, and iPhones, the first two of which are computers.
 3. Microsoft makes the Surface series of com-
 puters, as well as the Zune music player.
 4. The Macbooks come in 15 and 13 inch models and are
@@ -17,7 +16,6 @@ laptops not touchscreens. The iPad is a tablet.
 Go models.
 6. All Apple products are compatible with one-another. Microsoft products are not.
 7. The Surface Pro is compatible with an iPad, and an iPhone, the Zune is not.
-
 
 The database contains the following predicates/queries.
 
