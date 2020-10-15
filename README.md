@@ -76,14 +76,21 @@ It also has the ability to compute the largest path between two vertices
 without any loops. Although the longest path is not fully function and has edge
 cases in which it computes the incorrect path.
 The program requires a suppliment database form which to extract the vertices
-and edges. The edges must be names 'road(Vertex1, Vertex2, weight)' and the
-vertex must be names 'city(name)'.
+and edges. The edges must be named 'road(Vertex1, Vertex2, weight)' and the
+vertex must be named 'city(name)'.
 
 * A use case for shortest path is as describes below.
 
         ?- isShortest(start, end, Path).
         Path = [start, .... , end]
 
+> ## Question 6 (q6.pl)
+This program computes the largest path between two vertices without any
+loops. Although the longest path is not fully function and has edge cases
+in which it computes the incorrect path. The program requires a suppliment
+database form which to extract the vertices and edges. The edges must be
+named 'road(Vertex1, Vertex2, weight)' and the vertex must be
+named 'city(name)'.
 * A use case of the longest path is as described below.
 
         ?- isLongest(start, end, Path).

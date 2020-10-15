@@ -2,13 +2,13 @@
 % Author: Nachiket Patel
 %
 %
-% This program is to computer the shortest path betwwen two vertices
+% This program is to computer the longest path betwwen two vertices
 % and the graph on which this works requires must have edges
 % with name road(Vertex1, Vertex2, weight). The graph need not
 % contain explicit clauses/facts for bi directionality. The graph
 % will be treated as being undirected. The basic concept behind
 % this algorithm is to find all paths from A -> B and choose the
-% shortest one (the one with the smallest cost).
+% longest one (the one with the largest cost).
 % There is also code ot determien the longest path between two
 % vertices but there are edge cases for which it does not competely work.
 %
@@ -79,15 +79,18 @@ pathFinder(Start, End, Cost, [Start|T], Discovered) :-
     \+ find(Start, T),
     Cost is RoadCost+SubPathCost.
 
-% This acts as the 'function' which first calculates a path from the Start
-% to the End, and then proceds to check all other possible paths to see
-% if there are any other paths which have a smaller cost. Because of the
-% way the algorithm recurses the destination element does not get added
-% to the Path so it is manually added to the end of the list.
-isShortest(Start, End, CompletePath) :-
+
+% This is an attempt to discover the longest path using the same algorithm,
+% but it works for most cases but I have discovered edge cases where it does
+% work.
+isLongest(Start, End, CompletePath) :-
+    vertex(Start),
+    vertex(End),
     pathFinder(Start, End, Path, Cost),
     \+ ( pathFinder(Start, End, AltPath, AltCost),
          AltPath\=Path,
-         AltCost<Cost
+         AltCost>Cost
        ),
-    insertLast(Path, [End], CompletePath).
+    removeLast(Path, CompletePath).
+
+
