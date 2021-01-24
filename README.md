@@ -1,4 +1,4 @@
-# csc520Assi3
+# Prolog Shortest and Longest Path Algorithm
 Author: Nachiker Patel
  
 Constain instructions on how how to query the prolog programs q3.pl and q4.pl.
